@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4>Order Book</h4>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Side</th>
+        <th>Time</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Time</th>
+        <th>Side</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${orders.empty}">
+        <td colspan="8"> No Orders Available</td>
+    </tr>
+    <tr th:each="order : ${orders}">
+        <td><span th:text="${order.id}">ID</span></td>
+        <td><span th:text="${order.side.name()} eq 'BUY'? ${order.side} : ''">Side</span></td>
+        <td><span th:text="${order.side.name()} eq 'BUY'? ${order.time} : ''">Time</span></td>
+        <td><span th:text="${order.side.name()} eq 'BUY'? ${order.quantity} : ''">Quantity</span></td>
+        <td><span th:text="${order.price}">Price</span></td>
+        <td><span th:text="${order.side.name()} eq 'SELL'? ${order.quantity} : ''">Quantity</span></td>
+        <td><span th:text="${order.side.name()} eq 'SELL'? ${order.time} : ''">Time</span></td>
+        <td><span th:text="${order.side.name()} eq 'SELL'? ${order.side} : ''">Side</span></td>
+    </tr>
+    </tbody>
+</table>
+
+<h4>Trade History</h4>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${trades.empty}">
+        <td colspan="3"> No Trades available</td>
+    </tr>
+    <tr th:each="trade : ${trades}">
+        <td><span th:text="${trade.id}"></span></td>
+        <td><span th:text="${trade.price}"></span></td>
+        <td><span th:text="${trade.quantity}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
